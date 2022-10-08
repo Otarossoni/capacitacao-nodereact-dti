@@ -1,45 +1,25 @@
 import { Router } from "express";
-import { prismaClient } from "../database/prismaClient";
+import { listUserController } from "../controllers/users/listUsersController";
+import { createUserController } from "../controllers/users/createUserController";
+import { editUserController } from "../controllers/users/editUserController";
+import { deleteUserController } from "../controllers/users/deleteUserController";
+import { findByIdUserController } from "../controllers/users/findByIdUserController";
 
 const userRoutes = Router();
 
-//Endpoint de listagem de usuários
-userRoutes.get("/", async (req, res) => {
-  //Busca os dados de usuários
-  const userList = await prismaClient.user.findMany();
+// Endpoint de listagem de usuários
+userRoutes.get("/", listUserController);
 
-  //Retorna a lista de usuários
-  res.json(userList);
-});
+// Endpoint para criação de usuário
+userRoutes.post("/create", createUserController);
 
-//Endpoint para criação de usuário
-userRoutes.post("/create", async (req, res) => {
-  const user = req.body;
+// Endpoint para edição de usuário
+userRoutes.put("/update", editUserController);
 
-  const createdUser = await prismaClient.user.create({
-    data: {
-      name: user.name,
-      email: user.email,
-      password: user.password,
-    },
-  });
+// Endpoint para deletar de usuário
+userRoutes.delete("/delete", deleteUserController);
 
-  res.json(createdUser);
-});
-
-//Endpoint para edição de usuário
-userRoutes.put("/update", (req, res) => {
-  res.send("Edição de usuário");
-});
-
-//Endpoint para deletar de usuário
-userRoutes.delete("/delete", (req, res) => {
-  res.send("Deleção de usuário");
-});
-
-//Endpoint para deletar de usuário
-userRoutes.get("/findById/:id", (req, res) => {
-  res.send("Usuário por ID");
-});
+// Endpoint para buscar um usuário específico
+userRoutes.get("/findById/:id", findByIdUserController);
 
 export default userRoutes;
