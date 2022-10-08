@@ -3,6 +3,10 @@ import routes from "./routes/routes";
 
 const app = express();
 
+//Configura o Express para transitar dados com json
+app.use(express.json());
+
+//Rotas
 app.use(routes);
 
 app.listen(3000, () => {
