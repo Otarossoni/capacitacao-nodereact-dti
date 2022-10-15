@@ -9,3 +9,7 @@ Projeto feito na Capacitação de Node e React na Dataintegra
 - Express
 - Prisma
 - Bcrypt
+- Jwt
+- Jest
+- Swagger
+- Axios
