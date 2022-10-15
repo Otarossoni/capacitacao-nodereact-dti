@@ -7,6 +7,17 @@ import { findByIdUserController } from "../controllers/users/findByIdUserControl
 
 const userRoutes = Router();
 
+/**
+ * @openapi
+ * /users:
+ *  get:
+ *    tags: [Usuários]
+ *    summary: Busca todos os usuários
+ *    description: Busca todos os usuários cadastrados no banco de dados
+ *    responses:
+ *      200:
+ *        description: Listagem de usuários
+ */
 // Endpoint de listagem de usuários
 userRoutes.get("/", listUserController);
 

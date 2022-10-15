@@ -1,6 +1,8 @@
 import { Router } from "express";
 import { loginController } from "../controllers/authentication/loginController";
+import { logoutController } from "../controllers/authentication/logoutController";
 import { JwtMiddleware } from "../middlewares/jwt";
+import { cnpjController } from "../service/cnpjController";
 import { transactionsRoutes } from "./transactions.routes";
 import userRoutes from "./users.routes";
 
@@ -19,6 +21,12 @@ routes.use("/users", userRoutes);
 
 // Filtro de autenticação
 routes.use(JwtMiddleware);
+
+// Endpoint para buscar dados do CNPJ especificado
+routes.get("/cnpj/:cnpj", cnpjController);
+
+// Rota de Logout
+routes.post("/logout", logoutController);
 
 // Rota de transações
 routes.use("/transactions", transactionsRoutes);
