@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { loginController } from "../controllers/authentication/loginController";
+import { JwtMiddleware } from "../middlewares/jwt";
 import { transactionsRoutes } from "./transactions.routes";
 import userRoutes from "./users.routes";
 
@@ -10,12 +11,16 @@ routes.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-routes.use("/users", userRoutes);
-
 // Rota de login
 routes.post("/login", loginController);
 
-//Rota de transações
+// Rota de usuários
+routes.use("/users", userRoutes);
+
+// Filtro de autenticação
+routes.use(JwtMiddleware);
+
+// Rota de transações
 routes.use("/transactions", transactionsRoutes);
 
 export default routes;
