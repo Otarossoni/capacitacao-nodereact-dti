@@ -13,3 +13,5 @@ Projeto feito na Capacitação de Node e React na Dataintegra
 - Jest
 - Swagger
 - Axios
+- React
+- ViteJS
