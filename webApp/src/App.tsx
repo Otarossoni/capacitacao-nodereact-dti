@@ -22,6 +22,25 @@ function App() {
         color: '#fffefc',
       },
     },
+    components: {
+      MuiTextField: {
+        defaultProps: {
+          variant: 'filled',
+          size: 'small',
+        },
+      },
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            textTransform: 'none',
+          },
+        },
+        defaultProps: {
+          variant: 'contained',
+          size: 'medium',
+        },
+      },
+    },
   });
 
   return (
