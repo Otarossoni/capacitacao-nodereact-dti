@@ -5,8 +5,12 @@ import { JwtMiddleware } from "../middlewares/jwt";
 import { cnpjController } from "../service/cnpjController";
 import { transactionsRoutes } from "./transactions.routes";
 import userRoutes from "./users.routes";
+import cors from "cors";
 
 const routes = Router();
+
+// Liberar origens das requisições
+routes.use(cors({ origin: "*" }));
 
 // Roda de check
 routes.get("/", (req, res) => {
