@@ -6,9 +6,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { login } from '../../api/authentication/authentication';
 import { useApp } from '../../store/app/app';
+import { setLocalToken } from '../../helpers/localStorage';
+import { useAuth } from '../../store/auth/auth';
 
 const useLogin = () => {
-  const { setIsLoading } = useApp();
+  const { setIsLoading, handleErrors } = useApp();
+  const { setToken } = useAuth();
 
   const schema = yup.object({
     email: yup.string().email('Email inválido').required('Email obrigatório'),
@@ -24,10 +27,9 @@ const useLogin = () => {
 
     try {
       const response = await login(data);
-
-      console.log(response.data.token);
+      setToken(response?.data?.token);
     } catch (err: any) {
-      console.log(err);
+      handleErrors(err);
     }
     setIsLoading(false);
   });

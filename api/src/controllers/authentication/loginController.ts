@@ -26,7 +26,7 @@ const loginController = async (req: Request, res: Response) => {
   const passwordMatch = await bcrypt.compare(loginData.password, user.password);
 
   if (!passwordMatch) {
-    throw new Error("Senha");
+    throw new Error("Senha incorreta!");
   }
 
   if (!process.env.JWT_SECRET) {
