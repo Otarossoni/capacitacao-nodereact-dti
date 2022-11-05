@@ -13,5 +13,5 @@ export interface IAuthStates {
 
 export interface IAuthStore extends IAuthStates {
   setToken: (token: token) => void;
-  clearToken: () => void;
+  clearStore: () => void;
 }

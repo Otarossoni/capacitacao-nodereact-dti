@@ -35,7 +35,7 @@ const useAuth = create<IAuthStore>((set) => ({
       };
     });
   },
-  clearToken: () => {
+  clearStore: () => {
     removeLocalToken();
     set(defaultState);
   },

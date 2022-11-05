@@ -14,7 +14,7 @@ const Layout = () => {
   return (
     <>
       {isLoading && <Loading />}
-      <Grid container height="100vh" bgcolor={palette.background.default}>
+      <Grid container height="100vh" overflow={'auto'} bgcolor={palette.background.default}>
         <Outlet />
       </Grid>
     </>
